@@ -1,0 +1,11 @@
+{
+  "name": "garbage-classification-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "面向校园场景的垃圾分类识别助手",
+  "scripts": {
+    "data:seed": "node scripts/build-data.mjs",
+    "data:sync": "node scripts/sync-data.mjs",
+    "check": "node --check main.js && node scripts/sync-data.mjs"
+  }
+}

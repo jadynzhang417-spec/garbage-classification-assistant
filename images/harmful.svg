@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" role="img" aria-labelledby="title">
+  <title id="title">红色有害垃圾桶</title>
+  <path fill="#e14f4b" d="M18 40h84l-7 100H25L18 40Z"/>
+  <path fill="#b93d3a" d="M13 27h94v18H13zM40 15h40v12H40z"/>
+  <path fill="#fff" d="M60 59c17 0 31 13 31 30s-14 30-31 30-31-13-31-30 14-30 31-30Zm0 9c-12 0-22 9-22 21s10 21 22 21 22-9 22-21-10-21-22-21Z"/>
+  <path fill="#fff" d="m39 70 8-6 34 43-8 6z"/>
+  <circle cx="51" cy="86" r="5" fill="#fff"/><circle cx="69" cy="86" r="5" fill="#fff"/>
+</svg>

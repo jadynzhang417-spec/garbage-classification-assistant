@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="面向校园生活的垃圾分类查询、图片预览与分类科普助手。">
+  <meta name="theme-color" content="#173f35">
+  <title>垃圾分类识别助手</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="垃圾分类识别助手首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 44 44"><path d="M22 5a17 17 0 1 0 17 17h-5a12 12 0 1 1-3.5-8.5l-4 4H39V5l-5 5A16.9 16.9 0 0 0 22 5Z"/><path d="m18 16 4-7 4 7h-3v8h-2v-8h-3Zm-6 13h20v3H12v-3Z"/></svg>
+      </span>
+      <span>垃圾分类识别助手</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span><span class="sr-only">打开导航</span>
+    </button>
+    <nav id="mainNav" class="main-nav" aria-label="主导航">
+      <a href="#query">开始查询</a>
+      <a href="#scenes">校园场景</a>
+      <a href="#guide">分类科普</a>
+      <a href="#about">项目介绍</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> 校园生活分类指南</p>
+        <h1>看懂一件垃圾，<br><em>投对一个桶。</em></h1>
+        <p class="hero-intro">输入名称或上传图片，快速获得垃圾类别、投放建议和判断原因。无需复杂模型，靠清晰的知识库把每次分类讲明白。</p>
+
+        <form id="heroSearchForm" class="hero-search" role="search">
+          <label class="sr-only" for="heroSearchInput">输入垃圾名称</label>
+          <span class="search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+          </span>
+          <input id="heroSearchInput" type="search" list="garbageSuggestions" autocomplete="off" placeholder="例如：矿泉水瓶、纸巾、废电池">
+          <button type="submit">立即查询 <span aria-hidden="true">→</span></button>
+        </form>
+        <datalist id="garbageSuggestions"></datalist>
+
+        <div class="hero-meta" aria-label="项目数据概览">
+          <div><strong id="dataCount">100+</strong><span>常见垃圾</span></div>
+          <div><strong>4</strong><span>分类类别</span></div>
+          <div><strong>本地</strong><span>离线可用</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="四类垃圾分类示意">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="hero-stamp"><span>校园版</span><strong>分类<br>指南</strong></div>
+        <article class="bin-card bin-recycle">
+          <img src="images/recycle.svg" alt="">
+          <div><span>01</span><strong>可回收物</strong><small>纸 · 塑料 · 玻璃 · 金属 · 织物</small></div>
+        </article>
+        <article class="bin-card bin-kitchen">
+          <img src="images/kitchen.svg" alt="">
+          <div><span>02</span><strong>厨余垃圾</strong><small>食物残余 · 果皮 · 菜叶</small></div>
+        </article>
+        <article class="bin-card bin-harmful">
+          <img src="images/harmful.svg" alt="">
+          <div><span>03</span><strong>有害垃圾</strong><small>电池 · 药品 · 灯管</small></div>
+        </article>
+        <article class="bin-card bin-other">
+          <img src="images/other.svg" alt="">
+          <div><span>04</span><strong>其他垃圾</strong><small>污染纸品 · 陶瓷 · 一次性用品</small></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="query" class="query-section">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span></span> 快速判断</p>
+            <h2>你手里的东西，该去哪里？</h2>
+          </div>
+          <p>先完全匹配名称，再匹配别名和关键词；找不到时会给出相近建议。</p>
+        </div>
+
+        <div class="query-grid">
+          <div class="query-workbench">
+            <div class="query-tabs" role="tablist" aria-label="查询方式">
+              <button id="textTab" class="query-tab active" type="button" role="tab" aria-selected="true" aria-controls="textPanel">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+                名称查询
+              </button>
+              <button id="imageTab" class="query-tab" type="button" role="tab" aria-selected="false" aria-controls="imagePanel">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m5 17 5-5 4 4 2-2 3 3"/></svg>
+                图片辅助
+              </button>
+            </div>
+
+            <div id="textPanel" class="query-panel active" role="tabpanel" aria-labelledby="textTab">
+              <form id="mainSearchForm" class="main-search" role="search">
+                <label for="mainSearchInput">输入垃圾名称</label>
+                <div class="input-row">
+                  <input id="mainSearchInput" type="search" list="garbageSuggestions" autocomplete="off" placeholder="试试“奶茶杯”或“快递纸箱”">
+                  <button class="primary-button" type="submit">查询分类</button>
+                </div>
+                <p class="field-hint">支持常见别名与简单模糊匹配，例如“饮料瓶”“餐巾纸”“充电电池”。</p>
+              </form>
+            </div>
+
+            <div id="imagePanel" class="query-panel" role="tabpanel" aria-labelledby="imageTab" hidden>
+              <div id="dropZone" class="upload-zone">
+                <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+                <div id="uploadPrompt" class="upload-prompt">
+                  <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 10h32a6 6 0 0 1 6 6v32a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z"/><circle cx="24" cy="24" r="5"/><path d="m13 46 13-13 9 9 6-6 10 10M32 29V17m-5 5 5-5 5 5"/></svg>
+                  <strong>拖入图片，或点击选择</strong>
+                  <span>支持 JPG、PNG、WebP、GIF，单张不超过 8 MB</span>
+                </div>
+                <div id="previewWrap" class="preview-wrap" hidden>
+                  <img id="imagePreview" alt="已上传的垃圾图片预览">
+                  <button id="removeImageButton" type="button" aria-label="移除图片">×</button>
+                  <div id="fileMeta"></div>
+                </div>
+              </div>
+              <form id="imageAssistForm" class="image-assist-form">
+                <label for="imageNameInput">图片里的物品是什么？</label>
+                <div class="input-row">
+                  <input id="imageNameInput" type="search" list="garbageSuggestions" autocomplete="off" placeholder="输入或选择物品名称">
+                  <button class="primary-button" type="submit">查看建议</button>
+                </div>
+                <div id="filenameHint" class="filename-hint" hidden></div>
+              </form>
+            </div>
+
+            <div id="resultArea" class="result-area" aria-live="polite">
+              <div class="empty-result">
+                <div class="empty-result-icon" aria-hidden="true">?</div>
+                <div><strong>等待查询</strong><p>输入一个垃圾名称，这里会显示完整的分类解释。</p></div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="query-sidebar" aria-label="快捷查询和查询历史">
+            <section class="side-block">
+              <div class="side-title"><h3>热门垃圾</h3><span>一键查询</span></div>
+              <div id="popularList" class="popular-list"></div>
+            </section>
+            <section class="side-block history-block">
+              <div class="side-title"><h3>最近查询</h3><button id="clearHistoryButton" type="button">清空</button></div>
+              <div id="historyList" class="history-list"></div>
+            </section>
+            <p class="local-rule-note"><strong>温馨提示</strong>各地分类细则可能不同，实际投放请以所在城市最新要求为准。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenes" class="scenes-section section-shell">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span></span> 校园场景</p>
+          <h2>从每天经过的地方开始</h2>
+        </div>
+        <p>宿舍、食堂、教室和快递站，是校园垃圾最集中的四个场景。</p>
+      </div>
+      <div class="scene-layout">
+        <div class="scene-tabs" role="tablist" aria-label="校园场景筛选">
+          <button class="scene-tab active" type="button" data-scene="宿舍" aria-selected="true"><span>01</span>宿舍生活</button>
+          <button class="scene-tab" type="button" data-scene="食堂" aria-selected="false"><span>02</span>食堂用餐</button>
+          <button class="scene-tab" type="button" data-scene="快递站" aria-selected="false"><span>03</span>快递站</button>
+          <button class="scene-tab" type="button" data-scene="教室" aria-selected="false"><span>04</span>教室学习</button>
+        </div>
+        <div class="scene-content">
+          <div class="scene-copy">
+            <p id="sceneKicker">DORMITORY</p>
+            <h3 id="sceneTitle">宿舍生活</h3>
+            <p id="sceneDescription">饮料瓶、纸巾、电池和洗护用品最常见。保持可回收物清洁干燥，有害垃圾单独收集。</p>
+          </div>
+          <div id="sceneItems" class="scene-items"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="guide-section">
+      <div class="section-shell">
+        <div class="section-heading light-heading">
+          <div>
+            <p class="eyebrow"><span></span> 分类科普</p>
+            <h2>记住四个判断关键词</h2>
+          </div>
+          <p>能回收、有危害、易腐烂、其余项。先判断材质和状态，再决定投放位置。</p>
+        </div>
+        <div class="category-guide">
+          <article class="guide-card recycle-card">
+            <div class="guide-index">01</div>
+            <img src="images/recycle.svg" alt="">
+            <h3>可回收物</h3>
+            <p>适宜回收和资源化利用，投放前尽量保持清洁、干燥。</p>
+            <ul><li>废纸张</li><li>塑料</li><li>玻璃</li><li>金属</li><li>织物</li></ul>
+            <button type="button" data-guide-query="快递纸箱">查看示例 <span>→</span></button>
+          </article>
+          <article class="guide-card kitchen-card">
+            <div class="guide-index">02</div>
+            <img src="images/kitchen.svg" alt="">
+            <h3>厨余垃圾</h3>
+            <p>容易腐烂的食物残余、瓜果皮核和其他有机废弃物。</p>
+            <ul><li>剩菜剩饭</li><li>瓜果皮核</li><li>菜叶</li><li>茶叶渣</li></ul>
+            <button type="button" data-guide-query="苹果皮">查看示例 <span>→</span></button>
+          </article>
+          <article class="guide-card harmful-card">
+            <div class="guide-index">03</div>
+            <img src="images/harmful.svg" alt="">
+            <h3>有害垃圾</h3>
+            <p>对人体健康或环境有直接、潜在危害，需要安全处理。</p>
+            <ul><li>废电池</li><li>废灯管</li><li>过期药品</li><li>含汞用品</li></ul>
+            <button type="button" data-guide-query="废电池">查看示例 <span>→</span></button>
+          </article>
+          <article class="guide-card other-card">
+            <div class="guide-index">04</div>
+            <img src="images/other.svg" alt="">
+            <h3>其他垃圾</h3>
+            <p>除前三类以外，或已被污染、难以回收利用的生活垃圾。</p>
+            <ul><li>污染纸品</li><li>一次性用品</li><li>陶瓷</li><li>大骨头</li></ul>
+            <button type="button" data-guide-query="纸巾">查看示例 <span>→</span></button>
+          </article>
+        </div>
+
+        <div class="confusion-guide">
+          <div class="confusion-title">
+            <p class="eyebrow"><span></span> 易混淆提醒</p>
+            <h3>看起来像，不一定投一样</h3>
+          </div>
+          <div class="confusion-list">
+            <button type="button" data-guide-query="纸巾"><span>纸巾</span><strong>不是废纸</strong><small>使用后常被污染，回收价值低</small></button>
+            <button type="button" data-guide-query="奶茶杯"><span>奶茶杯</span><strong>先倒空残液</strong><small>本项目按常见混合污染状态归类</small></button>
+            <button type="button" data-guide-query="外卖餐盒"><span>外卖餐盒</span><strong>清洁度很关键</strong><small>被油污污染时投其他垃圾</small></button>
+            <button type="button" data-guide-query="大骨头"><span>大骨头</span><strong>不是厨余</strong><small>质地坚硬，不易被常规生化处理</small></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section section-shell">
+      <div class="about-copy">
+        <p class="eyebrow"><span></span> 项目介绍</p>
+        <h2>简单技术，也能解决真实问题</h2>
+        <p>项目面向校园生活，以结构化知识库为核心，用前端技术完成名称查询、图片预览、结果解释和分类科普。当前图片功能采用“上传预览 + 用户辅助确认”的可靠流程，不声称使用未接入的图像识别模型。</p>
+        <div class="tech-tags" aria-label="项目技术"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>JSON</span><span>LocalStorage</span></div>
+      </div>
+      <ol class="process-list">
+        <li><span>01</span><div><strong>用户输入</strong><p>输入名称，或上传图片后补充物品名称。</p></div></li>
+        <li><span>02</span><div><strong>程序匹配</strong><p>依次执行名称、别名、包含与模糊匹配。</p></div></li>
+        <li><span>03</span><div><strong>结果解释</strong><p>返回类别、投放建议、原因和注意事项。</p></div></li>
+        <li><span>04</span><div><strong>持续扩充</strong><p>在 JSON 中增加条目即可扩展知识库。</p></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-mark" aria-hidden="true">
+      <svg viewBox="0 0 44 44"><path d="M22 5a17 17 0 1 0 17 17h-5a12 12 0 1 1-3.5-8.5l-4 4H39V5l-5 5A16.9 16.9 0 0 0 22 5Z"/><path d="m18 16 4-7 4 7h-3v8h-2v-8h-3Zm-6 13h20v3H12v-3Z"/></svg>
+    </div>
+    <div><strong>垃圾分类识别助手</strong><p>从正确分类一次垃圾开始，共建绿色校园。</p></div>
+    <a href="#top">返回顶部 ↑</a>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="garbage-data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

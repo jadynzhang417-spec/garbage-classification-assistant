@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" role="img" aria-labelledby="title">
+  <title id="title">蓝色可回收物垃圾桶</title>
+  <path fill="#2472e7" d="M18 40h84l-7 100H25L18 40Z"/>
+  <path fill="#1958b7" d="M13 27h94v18H13zM40 15h40v12H40z"/>
+  <path fill="#fff" d="m60 60 10 17h-7v12H51V77h-7l10-17h6Zm-19 35h38l-8 14v-6H49l4 7H37l-9-16 6-10 7 11Zm38 0-9-16h16l9 16-9 16H73l6-11h7l-7-5Z" opacity=".95"/>
+</svg>

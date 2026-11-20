@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" role="img" aria-labelledby="title">
+  <title id="title">绿色厨余垃圾桶</title>
+  <path fill="#54a832" d="M18 40h84l-7 100H25L18 40Z"/>
+  <path fill="#3f8126" d="M13 27h94v18H13zM40 15h40v12H40z"/>
+  <path fill="#fff" d="M59 61c-8 3-14 11-14 21 0 4 1 7 3 10-8 1-14 7-14 15 0 9 7 16 16 16 4 0 8-2 11-5 3 3 7 5 11 5 9 0 16-7 16-16 0-8-6-14-14-15 2-3 3-6 3-10 0-10-7-18-16-21h-2Z" opacity=".95"/>
+  <path fill="#54a832" d="M60 74c-5 6-7 13-7 21h14c0-8-2-15-7-21Z"/>
+  <path fill="#fff" d="M63 62c2-7 8-12 16-13-1 8-7 14-16 15v-2Z"/>
+</svg>
